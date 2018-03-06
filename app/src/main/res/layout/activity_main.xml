@@ -5,12 +5,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccent"
     tools:context="com.simon.app.circleimage.MainActivity">
 
     <com.simon.app.lib.CircleImageView
         android:layout_width="400dp"
-        android:src="@drawable/ic_bg"
+        android:src="@drawable/ic_time"
         android:layout_height="300dp"/>
 
 </LinearLayout>
