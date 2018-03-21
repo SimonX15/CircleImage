@@ -3,6 +3,7 @@ package com.simon.app.lib
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.*
+import android.os.Build
 import android.util.AttributeSet
 import android.widget.ImageView
 
@@ -48,16 +49,22 @@ class CircleImageView(context: Context?, attrs: AttributeSet?) : ImageView(conte
             return
         }
 
-        if (dstBitmap == null) {
-            dstBitmap = createDstBitmap()
-        }
+        //when reset src, should change
+//        if (dstBitmap == null) {
+        dstBitmap = createDstBitmap()
+//        }
 
         if (circleBitmap == null) {
             circleBitmap = createCircleBG(width)
         }
 
         canvas?.apply {
-            val layer = saveLayer(0f, 0f, width.toFloat(), height.toFloat(), null)//新建layer
+            //新建layer
+            val layer = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                saveLayer(0f, 0f, width.toFloat(), height.toFloat(), null)
+            } else {
+                saveLayer(0f, 0f, width.toFloat(), height.toFloat(), null, 0)
+            }
 
             drawBitmap(dstBitmap, 0f, 0f, mPaint)
             mPaint!!.xfermode = PorterDuffXfermode(PorterDuff.Mode.DST_IN)
