@@ -72,7 +72,9 @@ class CircleImageView(context: Context?, attrs: AttributeSet?) : ImageView(conte
 
             mPaint!!.xfermode = null
             //layer退栈
-            restoreToCount(layer)
+            if (layer >= 1) {
+                restoreToCount(layer)
+            }
         }
     }
 
